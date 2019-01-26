@@ -1,0 +1,35 @@
+From 733ea3240dd5cfef3e96b694666b051c7be7e1e2 Mon Sep 17 00:00:00 2001
+From: George T Kramer <george.t.kramer@intel.com>
+Date: Fri, 25 Jan 2019 17:57:25 -0800
+Subject: [PATCH] Add missing make install target
+
+---
+ Makefile | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/Makefile b/Makefile
+index bdc7120..b1159ed 100644
+--- a/Makefile
++++ b/Makefile
+@@ -64,3 +64,18 @@ deb:
+ test:
+ 	pytest
+ 	flake8
++
++install:
++	mkdir -p $(DESTDIR)/usr/lib/systemd/system
++	cp -a dist/amazon-efs-mount-watchdog.service $(DESTDIR)/usr/lib/systemd/system
++	mkdir -p $(DESTDIR)/usr/share/$(PACKAGE_NAME)
++	cp -a dist/amazon-efs-mount-watchdog.conf $(DESTDIR)/usr/share/$(PACKAGE_NAME)
++	cp -a dist/efs-utils.crt $(DESTDIR)/usr/share/$(PACKAGE_NAME)
++	cp -a dist/efs-utils.conf $(DESTDIR)/usr/share/$(PACKAGE_NAME)
++
++	mkdir -p $(DESTDIR)/usr/bin
++	cp -a src/mount_efs/__init__.py $(DESTDIR)/usr/bin/mount.efs
++	cp -a src/watchdog/__init__.py $(DESTDIR)/usr/bin/amazon-efs-mount-watchdog
++
++	mkdir -p $(DESTDIR)/usr/share/man/man8
++	cp -a man/mount.efs.8 $(DESTDIR)/usr/share/man/man8
+-- 
+2.20.1
+
