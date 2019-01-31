@@ -4,7 +4,7 @@
 #
 Name     : amazon-efs-utils
 Version  : 1.5
-Release  : 2
+Release  : 4
 URL      : https://github.com/aws/efs-utils/archive/v1.5.tar.gz
 Source0  : https://github.com/aws/efs-utils/archive/v1.5.tar.gz
 Summary  : No detailed summary available
@@ -17,21 +17,14 @@ Requires: amazon-efs-utils-man = %{version}-%{release}
 Requires: amazon-efs-utils-services = %{version}-%{release}
 Requires: attrs
 Requires: configparser
-Requires: coverage
 Requires: enum34
-Requires: flake8
 Requires: funcsigs
 Requires: mccabe
 Requires: nfs-utils
 Requires: openssl
 Requires: pbr
 Requires: pluggy
-Requires: py
-Requires: pycodestyle
 Requires: pyflakes
-Requires: pytest
-Requires: pytest-cov
-Requires: python-mock
 Requires: six
 Requires: stunnel
 Patch1: 0001-Add-missing-make-install-target.patch
@@ -92,12 +85,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1548469616
+export SOURCE_DATE_EPOCH=1548975562
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1548469616
+export SOURCE_DATE_EPOCH=1548975562
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/amazon-efs-utils
 cp LICENSE %{buildroot}/usr/share/package-licenses/amazon-efs-utils/LICENSE
