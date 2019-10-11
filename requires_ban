@@ -7,3 +7,4 @@ py
 flake8
 coverage
 pycodestyle
+enum34
