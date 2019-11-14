@@ -4,7 +4,7 @@
 #
 Name     : amazon-efs-utils
 Version  : 1.14
-Release  : 9
+Release  : 11
 URL      : https://github.com/aws/efs-utils/archive/v1.14/efs-utils-1.14.tar.gz
 Source0  : https://github.com/aws/efs-utils/archive/v1.14/efs-utils-1.14.tar.gz
 Summary  : No detailed summary available
@@ -16,7 +16,6 @@ Requires: amazon-efs-utils-license = %{version}-%{release}
 Requires: amazon-efs-utils-man = %{version}-%{release}
 Requires: amazon-efs-utils-services = %{version}-%{release}
 Requires: attrs
-Requires: configparser
 Requires: funcsigs
 Requires: mccabe
 Requires: nfs-utils
@@ -27,7 +26,6 @@ Requires: pyflakes
 Requires: six
 Requires: stunnel
 BuildRequires : attrs
-BuildRequires : configparser
 BuildRequires : funcsigs
 BuildRequires : mccabe
 BuildRequires : nfs-utils
@@ -38,6 +36,7 @@ BuildRequires : pyflakes
 BuildRequires : six
 BuildRequires : stunnel
 Patch1: 0001-Add-missing-make-install-target.patch
+Patch2: 0001-configparser-is-for-py2.patch
 
 %description
 This package provides utilities for simplifying the use of EFS file systems
@@ -87,15 +86,16 @@ services components for the amazon-efs-utils package.
 
 %prep
 %setup -q -n efs-utils-1.14
+cd %{_builddir}/efs-utils-1.14
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573496313
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1573773955
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -108,7 +108,7 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1573496313
+export SOURCE_DATE_EPOCH=1573773955
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/amazon-efs-utils
 cp %{_builddir}/efs-utils-1.14/LICENSE %{buildroot}/usr/share/package-licenses/amazon-efs-utils/b8c10789883a17bc1d0e9f763547f739436dec29
