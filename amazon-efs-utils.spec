@@ -4,7 +4,7 @@
 #
 Name     : amazon-efs-utils
 Version  : 1.31.3
-Release  : 31
+Release  : 32
 URL      : https://github.com/aws/efs-utils/archive/v1.31.3/efs-utils-1.31.3.tar.gz
 Source0  : https://github.com/aws/efs-utils/archive/v1.31.3/efs-utils-1.31.3.tar.gz
 Summary  : No detailed summary available
@@ -24,7 +24,6 @@ BuildRequires : pypi(configparser)
 BuildRequires : pypi(coverage)
 BuildRequires : pypi(enum34)
 BuildRequires : pypi(flake8)
-BuildRequires : pypi(funcsigs)
 BuildRequires : pypi(mccabe)
 BuildRequires : pypi(mock)
 BuildRequires : pypi(pbr)
@@ -91,7 +90,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1639058188
+export SOURCE_DATE_EPOCH=1641859263
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -104,7 +103,7 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1639058188
+export SOURCE_DATE_EPOCH=1641859263
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/amazon-efs-utils
 cp %{_builddir}/efs-utils-1.31.3/LICENSE %{buildroot}/usr/share/package-licenses/amazon-efs-utils/b8c10789883a17bc1d0e9f763547f739436dec29
